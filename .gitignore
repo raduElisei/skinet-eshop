@@ -476,3 +476,5 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 .config/dotnet-tools.json
+API/skinet.db-wal
+API/skinet.db-shm
