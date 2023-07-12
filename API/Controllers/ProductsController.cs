@@ -31,16 +31,7 @@ public class ProductsController : ControllerBase
         var specifications = new ProductsWithTypesAndBrandsSpecification();
         var products = await _productsRepo.ListAsync(specifications);
 
-        return products.Select(product => new ProductToReturnDto
-        {
-            Id = product.Id,
-            Name = product.Name,
-            Description = product.Description,
-            PictureUrl = product.PictureUrl,
-            Price = product.Price,
-            ProductBrand = product.ProductBrand.Name,
-            ProductType = product.ProductType.Name
-        }).ToList();
+        return Ok(_mapper.Map<IReadOnlyList<Product>, IReadOnlyList<ProductToReturnDto>>(products));
     }
 
     [HttpGet("{id}")]
