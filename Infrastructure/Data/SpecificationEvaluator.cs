@@ -25,6 +25,11 @@ public class SpecificationEvaluator<TEntity> where TEntity : BaseEntity
             query = query.OrderByDescending(specification.OrderByDescending);
         }
 
+        if (specification.IsPagingEnabled)
+        {
+            query = query.Skip(specification.Skip).Take(specification.Take);
+        }
+
         query = specification.Includes.Aggregate(query, (current, include) => current.Include(include));
 
         return query;
